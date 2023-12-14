@@ -1,0 +1,8 @@
+/.vscode
+/.github
+/.idea
+/buildtest
+/data/*
+/logs/*
+.DS_Store
+.env
