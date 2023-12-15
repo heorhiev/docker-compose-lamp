@@ -71,6 +71,9 @@ if [ ! -f "$PROJECT_FOLDER/crm/common/config/main-local.php" ]; then
     chmod 0755 ${PROJECT_FOLDER}/crm/${FOLDER}/config/params-local.php
   done
 
+  cp -r ./project/common/config/modules/ ${PROJECT_FOLDER}/crm/common/config/
+  chmod 0755 ${PROJECT_FOLDER}/crm/common/config/modules
+
   echo "config cp end"
 
 elif [ $UPDATE_REPOS ]; then
