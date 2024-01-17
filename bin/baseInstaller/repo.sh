@@ -8,6 +8,7 @@ rm -rfd ./project
 
 git config --global --add safe.directory '*'
 
+rm -rfd ./project
 git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@$PROJECT_REPO" ./project
 
 MODULES="$(cat ./project/common/modules.txt)"
