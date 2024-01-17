@@ -8,17 +8,16 @@ rm -rfd ./project
 
 git config --global --add safe.directory '*'
 
-git clone -b ${BASE_BRANCH} http://${GITLAB_AUTH}@${PROJECT_REPO} ./project
+git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@$PROJECT_REPO" ./project
 
-MODULES="${DEFAULT_MODULES} $(cat ./project/common/modules.txt)"
+MODULES="$(cat ./project/common/modules.txt)"
 MODULES="${MODULES//$'\n'/ }"
-
 
 
 if [ ! -f "$PROJECT_FOLDER/README.md" ]; then
   echo "Clone main repo (branch $BASE_BRANCH)"
   rm -rf ${PROJECT_FOLDER} && mkdir -p ${PROJECT_FOLDER}
-  git clone -b ${BASE_BRANCH} http://${GITLAB_AUTH}@gitlab.sofona.com:1500/sofonateam/crm/base.git ${PROJECT_FOLDER}
+  git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@gitlab.sofona.com:1500/sofonateam/pelliron/crm.git" ${PROJECT_FOLDER}
 elif [ $UPDATE_REPOS ]; then
   echo "Update main repo (branch $BASE_BRANCH)"
   cd ${PROJECT_FOLDER} && git checkout -f ${BASE_BRANCH} && git pull
@@ -36,7 +35,7 @@ do
 
   if [ ! -d "$PROJECT_FOLDER/crm/common/modules/$MODULE_NAME" ]; then
     echo "Clone module $MODULE_NAME"
-    git clone -b ${BASE_BRANCH} http://${GITLAB_AUTH}@gitlab.sofona.com:1500/sofonateam/${i}.git ${PROJECT_FOLDER}/crm/common/modules/${MODULE_NAME}
+    git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@gitlab.sofona.com:1500/sofonateam/$i.git" ${PROJECT_FOLDER}/crm/common/modules/${MODULE_NAME}
     chmod 0755 ${PROJECT_FOLDER}/crm/common/modules/${MODULE_NAME}
   else
     echo "Update module $MODULE_NAME"
@@ -49,7 +48,7 @@ echo "check template"
 TEMPLATE_PATH="$PROJECT_FOLDER/crm/common/templates/$TEMPLATE_NAME"
 if [ -n "$TEMPLATE_NAME" ] && [ ! -d ${TEMPLATE_PATH} ]; then
   echo "Clone template repo (branch $BASE_BRANCH)"
-  git clone -b ${BASE_BRANCH} http://${GITLAB_AUTH}@${TEMPLATE_REPO} ${TEMPLATE_PATH}
+  git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@$TEMPLATE_REPO" ${TEMPLATE_PATH}
 elif [ -n "$TEMPLATE_NAME" ]; then
   echo "Update template repo (branch $BASE_BRANCH)"
   cd ${TEMPLATE_PATH} && git checkout -f ${BASE_BRANCH} && git pull
