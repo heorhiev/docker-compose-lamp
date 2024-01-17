@@ -12,7 +12,7 @@ services:
         - TEMPLATE_NAME=${TEMPLATE_NAME}
         - TEMPLATE_REPO=${TEMPLATE_REPO}
         - DOMAIN=${DOMAIN}
-        - BASE_BRANCH=${BASE_BRANCH}
+        - BASE_BRANCH=${BASE_BRANCH-dev}
     container_name: "${APP_NAME}-base_installer"
     environment:
       - UPDATE_REPOS=true
