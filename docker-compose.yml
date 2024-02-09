@@ -18,7 +18,7 @@ services:
       - UPDATE_REPOS=true
     volumes:
       - ${APP_ROOT-./www/keycrm}:/app:rw
-      - ./bin/baseInstaller:/baseInstaller
+      - ./bin/baseInstaller:/baseInstaller:rw
     command: ["/baseInstaller/repo.sh"]
   webserver:
     build:
