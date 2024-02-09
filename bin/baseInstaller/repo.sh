@@ -13,11 +13,10 @@ git clone -b ${BASE_BRANCH} "http://$GITLAB_AUTH@$PROJECT_REPO" ./project
 MODULES="$(cat ./project/common/modules.txt)"
 MODULES="${MODULES//$'\n'/ }"
 
-
 if [ ! -f "$PROJECT_FOLDER/README.md" ]; then
   echo "Clone main repo (branch $BASE_BRANCH)"
   rm -rf ${PROJECT_FOLDER} && mkdir -p ${PROJECT_FOLDER}
-  git clone "http://$GITLAB_AUTH@gitlab.sofona.com:1500/sofonateam/pelliron/crm.git" ${PROJECT_FOLDER}
+  git clone "http://$GITLAB_AUTH@gitlab.sofona.com:1500/sofonateam/crm/base.git" ${PROJECT_FOLDER}
 elif [ $UPDATE_REPOS ]; then
   echo "Update main repo (branch $BASE_BRANCH)"
 fi
