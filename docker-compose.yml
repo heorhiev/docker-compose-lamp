@@ -12,13 +12,13 @@ services:
         - TEMPLATE_NAME=${TEMPLATE_NAME}
         - TEMPLATE_REPO=${TEMPLATE_REPO}
         - DOMAIN=${DOMAIN}
+        - BASE_BRANCH=${BASE_BRANCH-dev}
     container_name: "${APP_NAME}-base_installer"
     environment:
       - UPDATE_REPOS=true
-      - BASE_BRANCH=dev
     volumes:
       - ${APP_ROOT-./www/keycrm}:/app:rw
-      - ./bin/baseInstaller:/baseInstaller
+      - ./bin/baseInstaller:/baseInstaller:rw
     command: ["/baseInstaller/repo.sh"]
   webserver:
     build:
