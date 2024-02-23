@@ -11,7 +11,9 @@ a2ensite api.${DOMAIN};
 service apache2 reload;
 
 apt-get update
-apt-get install unzip
+apt-get install -y unzip
+apt-get install -y cron
+apt-get install -y supervisor
 
 su www-data
 
