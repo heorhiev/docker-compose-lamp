@@ -1,6 +1,7 @@
-echo "127.0.0.1 $DOMAIN"     >> /etc/hosts.conf
+echo "127.0.0.1 $DOMAIN" >> /etc/hosts.conf
 
-a2ensite ${DOMAIN};
+a2ensite ${DOMAIN}.conf;
+a2ensite default.conf;
 
 service apache2 reload;
 
@@ -13,6 +14,6 @@ su www-data
 
 cd /var/www/html/site
 
-echo "No" | php /var/www/html/site/init --env=Development
+echo "No" | php /var/www/html/site/init
 
 echo "y" | composer update --ignore-platform-reqs

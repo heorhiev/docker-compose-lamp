@@ -14,7 +14,7 @@ services:
     environment:
       - UPDATE_REPOS=true
     volumes:
-      - ${APP_ROOT-./www/keycrm}:/app:rw
+      - ${APP_ROOT-./www/site}:/app:rw
       - ./bin/baseInstaller:/baseInstaller:rw
     command: ["/baseInstaller/repo.sh"]
   webserver:
@@ -34,7 +34,7 @@ services:
       - ${XDEBUG_LOG_DIR-./logs/xdebug}:/var/log/xdebug
     environment:
       APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT-/var/www/html}
-      APP_ROOT: ${APACHE_DOCUMENT_ROOT}/keycrm/base
+      APP_ROOT: ${APACHE_DOCUMENT_ROOT}/site
       APP_NAME: ${APP_NAME}
       ENVIRONMENT: ${ENVIRONMENT-dev}
       DOMAIN: ${DOMAIN}
